@@ -1,25 +1,29 @@
 package com.kodilla.testing;
 
 import com.kodilla.testing.forum.ForumPost;
+import com.kodilla.testing.shape.Circle;
+import com.kodilla.testing.shape.ShapeCollector;
+import com.kodilla.testing.shape.Square;
+import com.kodilla.testing.shape.Triangle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestingMain {
 
     public static void main(String[] args) {
 
-        ForumPost f1 = new ForumPost("bla bla", "John");
-        ForumPost f2 = new ForumPost("bla bla", "John");
+        ShapeCollector shapes = new ShapeCollector();
 
+        Triangle tri = new Triangle(3, 4);
+        System.out.println(tri);
+        System.out.println(new Square(2));
+        System.out.println(new Circle(1));
 
-        System.out.println("Is f1 equals f2: " + f1.equals(f2));
+        shapes.addFigure(tri);
+        shapes.addFigure(new Square(3));
+        shapes.addFigure(new Circle(1));
 
-        Object o = f2;
-        boolean bool = o instanceof ForumPost;
-        System.out.println("Is o instanceof ForumPost " + bool);
-        System.out.println("Is o class ***" + o.getClass().getSimpleName());
-        System.out.println("Is f2 class " + f2.getClass());
-
-        Number n = 0;
-        Class<? extends Number> c = n.getClass();
-        System.out.println(c);
+        System.out.println(shapes.showFigures());
     }
 }
