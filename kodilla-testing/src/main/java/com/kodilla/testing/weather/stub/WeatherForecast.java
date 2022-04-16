@@ -44,6 +44,7 @@ public class WeatherForecast {
         int halfLength = temperaturesArray.length / 2;
 
         Arrays.sort(temperaturesArray);
+
         if(temperaturesArray.length % 2 == 0)
             return (temperaturesArray[halfLength - 1] +
                             temperaturesArray[halfLength]) / 2;
