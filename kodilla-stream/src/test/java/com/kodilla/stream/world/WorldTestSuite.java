@@ -3,6 +3,7 @@ package com.kodilla.stream.world;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,21 +32,28 @@ public class WorldTestSuite {
         Country  india = new Country("India", "2960831254");
         Country  indonesia = new Country("Indonesia", "250744351");
 
+
         europa.addCountry(poland);
         europa.addCountry(germany);
         europa.addCountry(england);
         europa.addCountry(france);
-        africa.addCountry(egypt);
-        africa.addCountry(kenya);
-        africa.addCountry(ethiopia);
-        africa.addCountry(sudan);
-        asia.addCountry(china);
-        asia.addCountry(japan);
-        asia.addCountry(india);
-        asia.addCountry(indonesia);
-        world.addContinent(europa);
-        world.addContinent(africa);
-        world.addContinent(asia);
+
+
+
+        for (Country country : Arrays.asList(poland, germany, england, france)) {
+            europa.addCountry(country);
+        }
+
+        for (Country country : Arrays.asList(egypt, kenya, ethiopia, sudan)) {
+            africa.addCountry(country);
+        }
+
+        for (Country country : Arrays.asList(china, japan, india, indonesia)) {
+            asia.addCountry(country);
+        }
+
+        for(Continent continent : Arrays.asList(europa, africa, asia))
+            world.addContinent(continent);
 
         //When
         BigDecimal totalPeople = world.getPeopleQuantity();
