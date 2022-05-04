@@ -27,12 +27,7 @@ public abstract class Game {
 
     public int askForTheNumberOfWins(Scanner sc) {
         System.out.println("Please enter a number of wins.");
-        int number = 0;
-        //Scanner sc = new Scanner(System.in);
-        number = sc.nextInt();
-        //sc.close();
-
-        return number;
+        return sc.nextInt();
     }
 
     protected abstract void endGame(Scanner sc);
