@@ -2,18 +2,11 @@ package com.kodilla.exception.test;
 
 public class FirstChallenge {
 
-    public double divide(double a, double b) {
-        try {
-            return  a / b;
+    public double divide(double a, double b) throws ArithmeticException {
+        if (b == 0) {
+            throw new ArithmeticException();
         }
-        catch(ArithmeticException e) {
-            System.out.println(e.getMessage());
-        }
-        finally {
-            if(b == 0)
-                System.out.println("Cannot be divided by the second argument. Must be non-zero");
-        }
-        return 0;
+        return a / b;
     }
 
     /**
@@ -22,8 +15,19 @@ public class FirstChallenge {
      */
     public static void main(String[] args) {
         FirstChallenge firstChallenge = new FirstChallenge();
-        double result = firstChallenge.divide(3, 0);
+        Object e1 = null;
+        double result = 0.;
 
-        System.out.println(result);
+        try {
+            result = firstChallenge.divide(3, 0);
+        }catch(ArithmeticException e) {
+            System.out.println("Something went wrong! Error: " + e);
+            e1 = e;
+        }finally {
+            if(e1 != null)
+                System.out.println("The second argument is zero, it cannot be divided.");
+        }
+        if(e1 == null)
+            System.out.println(result) ;
     }
 }
