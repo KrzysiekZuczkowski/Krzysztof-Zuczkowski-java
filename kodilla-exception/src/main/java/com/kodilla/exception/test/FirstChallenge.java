@@ -14,6 +14,7 @@ public class FirstChallenge {
      * @param args
      */
     public static void main(String[] args) {
+
         FirstChallenge firstChallenge = new FirstChallenge();
         Object e1 = null;
         double result = 0.;
