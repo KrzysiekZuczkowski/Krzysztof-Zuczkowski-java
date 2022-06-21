@@ -9,38 +9,49 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class BoardConfig {
 
-    @Autowired
-    @Qualifier("toDo")
-    TaskList toDo;
-
-    @Autowired
-    @Qualifier("inProgress")
-    TaskList inProgress;
-
-    @Autowired
-    @Qualifier("done")
-    TaskList done;
+    @Bean
+    public Board board() {
+        return new Board(taskList(), taskList(), taskList());
+    }
 
     @Bean
-    public Board getBoard() {
-        return new Board(toDo, inProgress, done);
-    }
-
-    @Bean(name = "toDo")
     @Scope("prototype")
-    public TaskList getToDo() {
+    public TaskList taskList() {
         return new TaskList();
     }
 
-    @Bean(name = "inProgress")
-    @Scope("prototype")
-    public TaskList getInProgress() {
-        return new TaskList();
-    }
-
-    @Bean(name = "done")
-    @Scope("prototype")
-    public TaskList getDone() {
-        return new TaskList();
-    }
+//    @Autowired
+//    @Qualifier("toDo")
+//    TaskList toDo;
+//
+//    @Autowired
+//    @Qualifier("inProgress")
+//    TaskList inProgress;
+//
+//    @Autowired
+//    @Qualifier("done")
+//    TaskList done;
+//
+//    @Bean
+//    public Board getBoard() {
+//        return new Board(toDo, inProgress, done);
+//    }
+//
+//    @Bean(name = "toDo")
+//    @Scope("prototype")
+//    public TaskList getToDo() {
+//        return new TaskList();
+//    }
+//
+//    @Bean(name = "inProgress")
+//    @Scope("prototype")
+//    public TaskList getInProgress() {
+//        return new TaskList();
+//    }
+//
+//    @Bean(name = "done")
+//    @Scope("prototype")
+//    public TaskList getDone() {
+//        return new TaskList();
+//    }
 }
