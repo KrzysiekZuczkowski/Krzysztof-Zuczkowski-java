@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,8 +42,10 @@ public class LibraryTestSuite {
             System.out.println(e);
         }
 
+        //When
         library.getBooks().remove(library.getBook());
 
+        //Then
         System.out.println(library);
         System.out.println(shallowClonedLib);
         System.out.println(deepCopyLib);
@@ -53,8 +54,10 @@ public class LibraryTestSuite {
         assertEquals(4, shallowClonedLib.getBooks().size());
         assertEquals(5, deepCopyLib.getBooks().size());
 
+        //When
         library.filterBooks();
 
+        //Then
         System.out.println(library);
         System.out.println(shallowClonedLib);
         System.out.println(deepCopyLib);
@@ -62,9 +65,11 @@ public class LibraryTestSuite {
         assertEquals(library.getBooks(), shallowClonedLib.getBooks());
         assertNotEquals(library.getBooks(), deepCopyLib.getBooks());
 
+        //When
         for(Book book : library.getBooks())
             book.setBook();
 
+        //Then
         System.out.println(library);
         System.out.println(shallowClonedLib);
         System.out.println(deepCopyLib);

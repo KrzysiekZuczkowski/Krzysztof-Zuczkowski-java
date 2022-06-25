@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class Library extends Prototype<Library> {
 
-    String name;
-    Set<Book> books = new HashSet<>();
+    private String name;
+    private Set<Book> books = new HashSet<>();
 
     public Library(final String name) {
         this.name = name;
@@ -33,12 +33,6 @@ public class Library extends Prototype<Library> {
                 .filter(b -> b.getPublicationDate().getYear() % 2 == 0)
                 .collect(Collectors.toSet()));
     }
-
-
-//        books = books.stream()
-//                .filter(b -> b.getPublicationDate().getYear() % 2 == 0)
-//                .collect(Collectors.toSet());
-
 
     public Book getBook() {
         if(books.size() > 0)
