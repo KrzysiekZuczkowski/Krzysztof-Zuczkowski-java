@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Task {
 
-    private final String name;
+    private String name;
 
     public Task(final String name) {
         this.name = name;
@@ -12,6 +12,10 @@ public class Task {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

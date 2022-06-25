@@ -58,6 +58,10 @@ public class BoardTestSuite {
         //NEW: removing elements
         board.getLists().remove(listToDo);
 
+        board.getLists().stream()
+                .flatMap(f -> f.getTasks().stream())
+                    .forEach(t -> t.setName(t.getName() + " * "));
+
         //then
         System.out.println(board);
         System.out.println(clonedBoard);
