@@ -9,7 +9,7 @@ public class Pizza {
     private final String sauce;
     private List<String> ingredients;
 
-    public static class PizzaBuilder{
+    public static class PizzaBuilder {
 
         private String bottom;
         private String sauce;
