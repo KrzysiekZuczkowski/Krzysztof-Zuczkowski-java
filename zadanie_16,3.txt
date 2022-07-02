@@ -73,3 +73,25 @@ VALUES (3, 'in progress', 'something done 5', 1);
 
 COMMIT;
 
+#1. Listę zadań z tabeli ISSUESS z dołączonymi do nich nazwami
+# list zadań z tabeli ISSUESLISTS
+
+  SELECT I.DESCRIPTION , I.SUMMARY AS IsExeCuted, I2.NAME
+  FROM ISSUES I
+  JOIN ISSUESLISTS I2 ON I.ISSUESLISTS_ID = I2.ID;
+
+
+#2. Listę zadań z tabeli ISSUESS z przypisanymi do nich użytkownikami z tabeli USERS
+
+  SELECT I.DESCRIPTION , I.SUMMARY AS IsExeCuted, U.FIRSTNAME, U.LASTNAME
+  FROM ISSUES I
+  JOIN USERS U ON I.USER_ID_ASSIGNEDTO = U.ID;
+
+
+#3. Imiona i nazwiska użytkowników posiadających zadania, wraz
+# z informacją o ilości zadań, które są do nich przypisane
+
+  SELECT U.FIRSTNAME, U.LASTNAME, COUNT(*) AS TASK_NUMBER
+  FROM ISSUES I
+  JOIN USERS U ON I.USER_ID_ASSIGNEDTO = U.ID
+  GROUP BY I.USER_ID_ASSIGNEDTO;
