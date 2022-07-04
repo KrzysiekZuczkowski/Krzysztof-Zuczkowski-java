@@ -20,9 +20,9 @@ public class UserTestSuite {
         String willMedia = will.sharePost();
 
         //Then
-        assertEquals("[Twitter Publisher] You use Twitter", stevenMedia);
-        assertEquals("[Facebook Publisher] You use Facebook", johnMedia);
-        assertEquals("[Snapchat Publisher] You use Snapchat", willMedia);
+        assertEquals("[Twitter Publisher] You use Twitter.", stevenMedia);
+        assertEquals("[Facebook Publisher] You use Facebook.", johnMedia);
+        assertEquals("[Snapchat Publisher] You use Snapchat.", willMedia);
     }
 
     @Test
@@ -36,6 +36,6 @@ public class UserTestSuite {
         String stevenMedia = steven.sharePost();
 
         //Then
-        assertEquals("[Facebook Publisher] You use Facebook", stevenMedia);
+        assertEquals("[Facebook Publisher] You use Facebook.", stevenMedia);
     }
 }
