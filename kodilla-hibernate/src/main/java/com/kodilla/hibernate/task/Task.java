@@ -6,12 +6,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "TASKS")
-public class Task {
+public final class Task {
 
     private int id;
     private String description;
     private Date created;
     private int duration;
+    private TasksFinancialDetails taskFinancialDetails;
+    private TaskList2 taskList;
 
     public Task() {
     }
@@ -36,29 +38,49 @@ public class Task {
     }
 
     @NotNull
-    @Column(name = "CREATED")
+    @Column(name="CREATED")
     public Date getCreated() {
         return created;
     }
 
-    @Column(name = "DURATION")
+    @Column(name="DURATION")
     public int getDuration() {
         return duration;
     }
 
-    private void setId(int id) {
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name= "TASKS_FINANCIALS_ID")
+    public TasksFinancialDetails getTaskFinancialDetails() {
+        return taskFinancialDetails;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "TASKSLISTS_ID")
+    public TaskList2 getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskFinancialDetails(TasksFinancialDetails taskFinancialDetails) {
+        this.taskFinancialDetails = taskFinancialDetails;
+    }
+
+    public void setTaskList(TaskList2 taskList) {
+        this.taskList = taskList;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    private void setCreated(Date created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    private void setDuration(int duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 }
