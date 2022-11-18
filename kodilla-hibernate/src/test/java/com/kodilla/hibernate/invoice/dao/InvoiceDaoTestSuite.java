@@ -76,7 +76,7 @@ public class InvoiceDaoTestSuite {
         assertNotEquals(0, id2);
 
         //CleanUp
-        invoiceDao.deleteById(id);
+//        invoiceDao.deleteById(id);
 //        invoiceDao.deleteById(id2);
     }
 }
