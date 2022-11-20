@@ -11,6 +11,10 @@ import java.util.List;
         " WHERE SUBSTR(COMPANY_NAME, 1, 3) = :THREE_CHARACTERS",
         resultClass = Company.class
 )
+@NamedQuery(
+        name = "Company.retrieveCompaniesByPartOfName",
+        query = "FROM Company WHERE name LIKE :PART_OF_NAME"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

@@ -101,6 +101,7 @@ class CompanyDaoTestSuite {
                 companyDao.retrieveCompaniesNameEqualFirstThreeCharacters("soft");
 
         List<Employee> lastnameEmployees = employeeDao.retrieveByLastnameEmployees("Kovalsky");
+        List<Employee> employees = employeeDao.retrieveEmployeesByPartOfName("%val%");
 
         //Then
         try {
