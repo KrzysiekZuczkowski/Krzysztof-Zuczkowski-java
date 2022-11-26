@@ -1,6 +1,8 @@
 package com.kodilla.patterns2.aop.calculator;
 
+import com.kodilla.patterns2.facade.api.OrderDto;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -34,5 +36,22 @@ public class Watcher {
             throw throwable;
         }
         return result;
+    }
+
+    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))" +
+            "&& args(order, userId) && target(object)")
+    public void logBeforeProcessOrder(com.kodilla.patterns2.facade.api.OrderDto order,
+                                      java.lang.Long userId,
+                                      Object  object) {
+        LOGGER.info("Before execution processOrder() " +
+                "Class: " + object.getClass().getSimpleName() +
+                " args: " + order.getClass().getSimpleName() + " and userId = " + userId);
+    }
+
+    @AfterThrowing(pointcut = "execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))",
+    throwing = "e")
+    public void logAfterThrowingExceptionProcessOrder(
+            com.kodilla.patterns2.facade.api.OrderProcessingException e) {
+        LOGGER.info(e.getClass().getSimpleName() + "  " + e.getMessage());
     }
 }
