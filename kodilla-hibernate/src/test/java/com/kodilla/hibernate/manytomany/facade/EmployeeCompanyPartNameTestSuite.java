@@ -18,7 +18,7 @@ public class EmployeeCompanyPartNameTestSuite {
     @Test
     void testFindEmployeeOrCompanyFacade() {
         try {
-            facade.processFindEmpOrCom("%val%", "%tt%");
+            facade.processFindEmpOrCom("val", "tt");
         }
         catch (FindEmployeeOrCompanyProcessingException e) {
             assertFalse(FindEmployeeOrCompanyFacade.getFacadeDto().getWasError());
@@ -28,5 +28,10 @@ public class EmployeeCompanyPartNameTestSuite {
                     FindEmployeeOrCompanyFacade.getFacadeDto().getCompanyId());
         }
     }
-
 }
+/*
+Cześć jak próbowałem query = "FROM Company WHERE name LIKE %:PART_OF_NAME%"
+    wywalało taki błąd
+        Company.retrieveCompaniesByPartOfName failed because of:org.hibernate.hql.internal.ast.QuerySyntaxException:unexpected token: % near line 1, column 63 [FROM com.kodilla.hibernate.manytomany.Company WHERE name LIKE %:PART_OF_NAME%]
+        zadziałało dopiero z comcat()
+ */

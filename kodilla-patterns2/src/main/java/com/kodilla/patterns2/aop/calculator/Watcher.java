@@ -1,6 +1,5 @@
 package com.kodilla.patterns2.aop.calculator;
 
-import com.kodilla.patterns2.facade.api.OrderDto;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;

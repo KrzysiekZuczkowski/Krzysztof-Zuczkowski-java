@@ -12,7 +12,8 @@ import java.util.List;
         ),
         @NamedQuery(
             name = "Employee.retrieveEmployeesByPartOfName",
-            query = "FROM Employee WHERE firstname LIKE :PART_OF_NAME OR lastname LIKE :PART_OF_NAME"
+            query = "FROM Employee WHERE firstname LIKE CONCAT('%', :PART_OF_NAME, '%')" +
+                    " OR lastname LIKE CONCAT('%', :PART_OF_NAME, '%')"
         )
 })
 @Entity
