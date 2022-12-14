@@ -313,3 +313,17 @@ CREATE EVENT UPDATE_STATS
 
 DELIMITER ;
 
+--------------------------------------------------------------------------------------------------
+# Zadanie 30.6 indeksy dla biblioteki
+
+EXPLAIN SELECT *
+    FROM READERS
+WHERE FIRSTNAME LIKE 'John';
+
+CREATE INDEX NAME ON READERS (FIRSTNAME, LASTNAME);
+
+EXPLAIN SELECT *
+    FROM READERS
+WHERE FIRSTNAME LIKE 'John';
+
+CREATE INDEX TITLE ON BOOKS (TITLE);
