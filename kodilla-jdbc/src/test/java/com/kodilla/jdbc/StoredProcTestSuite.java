@@ -68,7 +68,7 @@ public class StoredProcTestSuite {
             howMany = rs.getInt("HOW_MANY");
         }
         assertEquals(0, howManyBefore);
-        assertEquals(2, howMany);
+        assertEquals(3, howMany);
         rs.close();
         statement.close();
     }
