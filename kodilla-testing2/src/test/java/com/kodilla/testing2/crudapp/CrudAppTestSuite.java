@@ -71,7 +71,22 @@ public class CrudAppTestSuite {
                             theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]")); // [12]
                     buttonCreateCard.click();                                  // [13]
                 });                                                            // [14]
-        Thread.sleep(3000);
+//        Thread.sleep(5000);
+        waitForAlertAndAccept();
+    }
+
+    private void waitForAlertAndAccept() {
+        boolean flag = true;
+        while (flag) {
+            try {
+                Alert alert = driver.switchTo().alert();
+                alert.accept();
+            }catch (org.openqa.selenium.NoAlertPresentException e) {
+//                System.out.println("Was here NoAlertPresentException");
+                continue;
+            }
+            flag = false;
+        }
     }
 
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
@@ -107,18 +122,6 @@ public class CrudAppTestSuite {
     }
 
     private void deleteCrudAppTestTask(String taskName) throws InterruptedException {
-        boolean flag = true;
-        while (flag) {
-            try {
-                Alert alert = driver.switchTo().alert();
-                alert.accept();
-            }catch (org.openqa.selenium.NoAlertPresentException e) {
-//                System.out.println("Was here NoAlertPresentException");
-                continue;
-            }
-            flag = false;
-        }
-
         driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
                 .filter(anyForm -> anyForm.findElement(
                         By.xpath(".//p[@class=\"datatable__field-value\"]")).getText().equals(taskName))
