@@ -4,6 +4,7 @@ import com.kodilla.testing2.config.WebDriverConfig;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -105,10 +106,32 @@ public class CrudAppTestSuite {
         return result;								                                // [16]
     }
 
+    private void deleteCrudAppTestTask(String taskName) throws InterruptedException {
+        boolean flag = true;
+        while (flag) {
+            try {
+                Alert alert = driver.switchTo().alert();
+                alert.accept();
+            }catch (org.openqa.selenium.NoAlertPresentException e) {
+//                System.out.println("Was here NoAlertPresentException");
+                continue;
+            }
+            flag = false;
+        }
+
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm -> anyForm.findElement(
+                        By.xpath(".//p[@class=\"datatable__field-value\"]")).getText().equals(taskName))
+                .forEach(theForm -> theForm.findElement(By.xpath(".//button[4]")).click());
+
+        Thread.sleep(2000);
+    }
+
     @Test
     public void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
+        deleteCrudAppTestTask(taskName);
     }
 }
